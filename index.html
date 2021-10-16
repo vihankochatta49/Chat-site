@@ -1,165 +1,180 @@
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Chat app</title>
-    <script defer src="http://localhost:5006/socket.io/socket.io.js"></script>
-    <script defer src="js/client.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <title>Chat app</title>
+  <script defer src="http://localhost:5006/socket.io/socket.io.js"></script>
+  <script defer src="js/client.js"></script>
 </head>
 
 <style>
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
 
-    body {
-        margin: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: sans-serif;
-    }
+  body {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+  }
 
-    .top-bar {
-        background-color: #1439db;
-        padding: 10px;
-        width: 40%;
-    }
+  .top-bar {
+    background-color: #333;
+    padding: 10px;
+    width: 40%;
+  }
 
-    .logo {
-        color: #f7f7f7;
-        font-size: 2rem;
-        text-align: left;
-    }
+  .logo {
+    color: #f7f7f7;
+    font-size: 2rem;
+    text-align: left;
+  }
 
-    .blank {
-        background-color: #f7f7f7;
-        height: 75%;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 40%;
-        padding: 10px;
-    }
+  .blank {
+    background-image: url("https://i.pinimg.com/originals/d5/81/ea/d581ea3f50eed25037814a430d9cdbba.jpg");
+    background-size: cover;
+    /* background-color: #f7f7f7; */
+    height: 75%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 40%;
+    padding: 10px;
+  }
 
-    .send {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40%;
-    }
+  .send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin-top: 15px;
+  }
 
-    .frm {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .frm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .message {
-        border-radius: 10px;
-        background-color: #f7f7f7;
-        outline: none;
-        min-height: 35px;
-        width: 45%;
-        padding: 10px;
-        margin-right: 10px;
-        border: 2px solid #1439db;
-        font-size: 1.5rem;
-    }
+  .message {
+    border-radius: 100px;
+    background-color: #333;
+    outline: none;
+    min-height: 35px;
+    width: 75%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #333;
+    font-size: 1.3rem;
+    color: white;
+  }
 
-    .txt {
-        position: relative;
-        float: left;
-        clear: both;
-        background-color: #1439db;
-        border-radius: 5px;
-        margin-top: 20px;
-        width: 45%;
-    }
+  .txt {
+    position: relative;
+    float: left;
+    clear: both;
+    background-color: #0c8484;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 45%;
+  }
 
-    .txt.arrow-left:after {
-        content: " ";
-        position: absolute;
-        left: -8px;
-        top: 0px;
-        border-top: 15px solid transparent;
-        border-left: none;
-        border-right: 15px solid #1439db;
-        border-bottom: 15px solid transparent;
-    }
+  .txt.arrow-left:after {
+    content: " ";
+    position: absolute;
+    left: -8px;
+    top: 2px;
+    border-top: 15px solid transparent;
+    border-left: none;
+    border-right: 15px solid #0c8484;
+    border-bottom: 15px solid transparent;
+  }
 
+  .txtr {
+    float: right;
+    clear: both;
+    background-color: #333;
+    border-radius: 10px;
+    width: 45%;
+    margin-top: 20px;
+    position: relative;
+  }
 
-    .txtr {
-        float: right;
-        clear: both;
-        background-color: #4cbb17;
-        border-radius: 5px;
-        width: 45%;
-        margin-top: 20px;
-        position: relative;
-    }
+  .txtr.arrow-right:after {
+    content: " ";
+    position: absolute;
+    right: -8px;
+    top: 2px;
+    border-top: 15px solid transparent;
+    border-right: none;
+    border-left: 15px solid #333;
+    border-bottom: 15px solid transparent;
+  }
 
-    .txtr.arrow-right:after {
-        content: " ";
-        position: absolute;
-        right: -8px;
-        top: 0px;
-        border-top: 15px solid transparent;
-        border-right: none;
-        border-left: 15px solid #4cbb17;
-        border-bottom: 15px solid transparent;
-    }
+  .md {
+    padding: 0px 0px 5px 10px;
+    color: #f7f7f7;
+    font-size: 1.2rem;
+  }
 
-    .md {
-        padding: 0px 0px 5px 10px;
-        color: #f7f7f7;
-        font-size: 1.3rem;
-    }
+  .mdr {
+    padding: 0px 0px 5px 8px;
+    color: #f7f7f7;
+    font-size: 1.2rem;
+  }
+  .me {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #ffb703;
+  }
 
-    .mdr {
-        padding: 0px 0px 5px 5px;
-        color: #f7f7f7;
-        font-size: 1.3rem;
-    }
-    .me {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-        color: #ffb703;
-    }
+  .mer {
+    padding: 5px 5px 5px 8px;
+    font-size: 0.8rem;
+    color: #ffe676;
+  }
 
-    .mer {
-        padding: 5px;
-        font-size: 0.8rem;
-        color: #FFE676;
-    }
+  .button {
+    border-radius: 100%;
+    border: 2px solid #0c8484;
+    padding: 10px;
+    color: #f7f7f7;
+    background-color: #0c8484;
+  }
 
-    .button {
-        border-radius: 100%;
-        border: 2px solid black;
-        padding: 15px;
-        color: #f7f7f7;
-        background-color: #1439db;
-    }
+  .button:hover {
+    opacity: 0.8;
+  }
 
-    .button:hover {
-        opacity: 0.8;
-    }
+  .fa-paper-plane {
+    font-size: 1.5rem;
+  }
 </style>
 
 <body>
-
-    <div class="top-bar">
-        <h1 class="logo">Chat</h1>
-    </div>
-    <div class="blank">
-    </div>
-    <div class="send">
-        <form action='#' class="frm">
-            <input class="message" name="message" placeholder="Write here..." required>
-            <button class="button" type="submit"><i class="fas fa-paper-plane"></i></button>
-        </form>
-    </div>
-
+  <div class="top-bar">
+    <h1 class="logo">Chat</h1>
+  </div>
+  <div class="blank"></div>
+  <div class="send">
+    <form action="#" class="frm">
+      <input
+        class="message"
+        name="message"
+        placeholder="Write here..."
+        required
+      />
+      <button class="button" type="submit">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
 </body>
